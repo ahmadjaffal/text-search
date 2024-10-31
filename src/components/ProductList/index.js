@@ -31,6 +31,13 @@ const ProductList = ({ products, searchTerm }) => {
                             <h2>{highlightText(product.title)}</h2>
                             <p>{highlightText(product.description)}</p>
                             <p>Price: <b>${product.price}</b></p>
+                            {product.tags ?
+                                <div className="products-tags">
+                                    {product.tags.map(tag => (
+                                        <span>{tag}</span>
+                                    ))}
+                                </div>
+                                : null}
                         </li>
                     ))
                 ) : (

@@ -1,15 +1,15 @@
 import React from 'react';
 
-const SearchBox = ({ searchTerm, onSearch }) => {
+const SearchBox = ({ searchTerm, handleSearch }) => {
     
     // Handle the change on the search input
     const handleChange = (event) => {
-        onSearch(event.target.value);
+        handleSearch(event.target.value);
     };
 
     // Clear the search input
     const clearSearch = () => {
-        onSearch('');
+        handleSearch('');
     };
 
     return (

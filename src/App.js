@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div className="main-container">
           <h1>Products List</h1>
-          <SearchBox searchTerm={searchTerm} onSearch={handleSearch} />
+          <SearchBox searchTerm={searchTerm} handleSearch={handleSearch} />
           <ProductList products={products} searchTerm={searchTerm} />
     </div>
   );
