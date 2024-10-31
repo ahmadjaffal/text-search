@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import ProductList from './components/ProductList';
+import SearchBox from './components/SearchBox';
+import './App.scss';
 
-function App() {
+const App = () => {
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    // Get products data from dummyjson
+    const fetchProducts = async () => {
+      const response = await fetch('https://dummyjson.com/products');
+      const data = await response.json();
+      setProducts(data.products);
+    };
+
+    fetchProducts();
+
+  }, []);
+
+  // Handle the change on the search input
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+          <h1>Products List</h1>
+          <SearchBox searchTerm={searchTerm} onSearch={handleSearch} />
+          <ProductList products={products} searchTerm={searchTerm} />
     </div>
   );
-}
+};
 
 export default App;
